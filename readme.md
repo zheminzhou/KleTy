@@ -47,6 +47,18 @@ The installation process normally finishes in <10 minutes.
 
 NOTE: Please make sure that "makeblastdb", "blastn", and "diamond" are all in the PATH environment variable (can be run without pointing to their actual location). 
 
+Finally, format the plasmid reference database:
+~~~~~~~~~~~
+$ cd /path/to/KleTy/
+$ cd db
+$ gzip -d plasmids.repr.fas.gz
+$ makeblastdb -in plasmids.repr.fas -dbtype nucl
+~~~~~~~~~~~
+
+
+
+
+
 
 # Quick Start (with examples)
 ## Get allelic and HierCC callings
