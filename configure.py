@@ -136,7 +136,7 @@ def check_db_files() :
   if not os.path.isfile(dbs['plast_db']+'.nhr') :
     logging.info('{0} is not found. Will download it. This may take a while but will only need to run only once.'.format(dbs['plast_db']))
     tmp_gz = dbs['plast_db']+'.gz'
-    if os.path.isfile(tmp_gz) :
+    if not os.path.isfile(tmp_gz) :
       Popen('wget -O {0} https://zenodo.org/records/12590507/files/plasmids.repr.fas.gz'.format(tmp_gz), shell=True, stdout=PIPE, stderr=PIPE).communicate()
       Popen('gzip -cd {0} > {1}'.format(tmp_gz, dbs['plast_db']), shell=True).communicate()
       Popen('{0} -in {1} -dbtype nucl'.format(exe['makeblastdb'], dbs['plast_db']), shell=True, stdout=PIPE, stderr=PIPE).communicate()
