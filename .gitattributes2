@@ -1,0 +1,2 @@
+db/plasmids.repr.fas.gz filter=lfs diff=lfs merge=lfs -text
+db/profile.parq filter=lfs diff=lfs merge=lfs -text
