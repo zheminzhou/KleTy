@@ -137,14 +137,11 @@ def check_db_files() :
     logging.info('Plasmid reference file is not found. Will download it from https://zenodo.org/records/12590507/files/plasmids.repr.fas.gz.')
     logging.info('This may take a while but will run only once.')
     tmp_gz = dbs['plast_db']+'.gz'
-    if not os.path.isfile(tmp_gz) :
-      Popen('wget -O {0} https://zenodo.org/records/12590507/files/plasmids.repr.fas.gz'.format(tmp_gz), shell=True).communicate()
-      Popen('gzip -cd {0} > {1}'.format(tmp_gz, dbs['plast_db']), shell=True).communicate()
-      Popen('{0} -in {1} -dbtype nucl'.format(exe['makeblastdb'], dbs['plast_db']), shell=True, stdout=PIPE, stderr=PIPE).communicate()
-      os.unlink(dbs['plast_db'])
-    else :
-      logging.error('{0} is not found.'.format(dbs['plast_db']))
-      sys.exit(-1)
+
+    Popen('wget -O {0} https://zenodo.org/records/12590507/files/plasmids.repr.fas.gz'.format(tmp_gz), shell=True).communicate()
+    Popen('gzip -cd {0} > {1}'.format(tmp_gz, dbs['plast_db']), shell=True).communicate()
+    Popen('{0} -in {1} -dbtype nucl'.format(exe['makeblastdb'], dbs['plast_db']), shell=True, stdout=PIPE, stderr=PIPE).communicate()
+    os.unlink(dbs['plast_db'])
 
 
 check_executables()

@@ -62,12 +62,12 @@ def klety(query, ql, prefix, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
         profiles = []
         for query in queries :
             logging.info('Running query: {0}'.format(query))
-            alleles = klebtyper(query, prefix, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc)
+            alleles = klebtyper(query, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc)
             profiles.append([query, alleles])
         write_cgMLST(prefix, profiles)
 
 
-def klebtyper(query, prefix, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
+def klebtyper(query, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
     # if prefix == None :
     #     prefix = os.path.basename(query).rsplit('.', 1)[0]
     
