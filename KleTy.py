@@ -34,10 +34,11 @@ def write_cgMLST(prefix, profiles) :
 @click.option('--ql', help='a list of query files. One query per line.')
 @click.option('-o', '--prefix', help='prefix for output. Only work when there is only one query. default: query filename', default=None)
 @click.option('-n', '--n_proc', help='number of process to use. default: 8', default=8, type=int)
+@click.option('-f', '--plasmid_fragment', help='flag to predict plasmid fragment sharing < 50% with the reference', default=False, is_flag=True)
 @click.option('-m', '--skip_gene', help='flag to skip AMR/VF searching. default: False', default=False, is_flag=True)
 @click.option('-g', '--skip_cgmlst', help='flag to skip cgMLST. default: False', default=False, is_flag=True)
 @click.option('-p', '--skip_plasmid', help='flag to skip plasmid typing. default: False', default=False, is_flag=True)
-def klety(query, ql, prefix, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
+def klety(query, ql, prefix, plasmid_fragment, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
     queries = [] if not query else [query]
     if ql :
         with open(ql, 'rt') as fin :
@@ -62,12 +63,12 @@ def klety(query, ql, prefix, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
         profiles = []
         for query in queries :
             logging.info('Running query: {0}'.format(query))
-            alleles = klebtyper(query, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc)
+            alleles = klebtyper(query, klety_out, plasmid_fragment, skip_gene, skip_cgmlst, skip_plasmid, n_proc)
             profiles.append([query, alleles])
         write_cgMLST(prefix, profiles)
 
 
-def klebtyper(query, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
+def klebtyper(query, klety_out, plasmid_fragment, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
     # if prefix == None :
     #     prefix = os.path.basename(query).rsplit('.', 1)[0]
     
@@ -88,7 +89,7 @@ def klebtyper(query, klety_out, skip_gene, skip_cgmlst, skip_plasmid, n_proc) :
         
         if not skip_plasmid :
             logging.info('\tSearching plasmids...')
-            plasmids = plast(tmpfile, n_proc=n_proc)
+            plasmids = plast(tmpfile, n_proc=n_proc, frag_qry = 30 if plasmid_fragment else 120)
             plasmids = [p for p in plasmids if p[0].startswith('PT')]
             logging.info('\tDone.')
         else :
