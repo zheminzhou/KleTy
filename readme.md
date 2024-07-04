@@ -116,27 +116,82 @@ Options:
 ~~~~~~~~~~~~~~~~~
 
 ## Parameters:
-* ^-q, --query^: Query genome. This can be in Fasta or Fastq format, and can be in plain text or GZIPped.
-* ^--ql^: A list of query files. One query genome (file location) per line. KleTy will run these queries one by one and concatenate the outputs together.
-* ^-o, --prefix^: Prefix for the outputs. There will be two files <prefix>.KleTy and <prefix>.cgMLST.profile.gz
-* 
+* **-q, --query**: Query genome. This can be in Fasta or Fastq format, and can be in plain text or GZIPped.
+* **--ql**: A list of query files. One query genome (file location) per line. KleTy will run these queries one by one and concatenate the outputs together.
+* **-o, --prefix**: Prefix for the outputs. There will be two files <prefix>.KleTy and <prefix>.cgMLST.profile.gz. Will use the prefix of the query file (or the ql file) if not specified. 
+* **-n, --n_proc**: Number of processes to use. Default: 8
+* **-f, --plasmid_fragment**: Flag to predict less reliable plasmid fragments that share <50% (but >=30%) of the reference plasmid.
+* **-m, --skip_gene**: Flag to skip AMR/VF Searching. This step normaly taks ~ 15 seconds.
+* **-g, --skip_cgmlst**: Flag to skip cgMLST calling. This step normaly taks ~ 20 seconds. 
+* **-p, --skip_plasmid**: Flag to skip plasmid prediction. This step normaly taks ~ 30 seconds. 
 
 
 # Outputs:
 ## KleTy generates:
 
 ~~~~~~~~~~~~~
-<prefix_of_input>.KleTy
+<prefix>.KleTy
 ~~~~~~~~~~~~~
 
-### <prefix_of_input>.KleTy contains the genotyping results
+### <prefix>.KleTy contains the genotyping results
 ~~~~~~~~~~~~~
 $ cat CP015990.KleTy
-REPLICON        SPECIES HC1360.500.200.100.50.20.10.5.2 REFERENCE       PLASTYPE        COVERAGE        AMR:AMINOGLYCOSIDE      AMR:AMIKACIN    AMR:APRAMYCIN   AMR:GENTAMICIN  AMR:HYGROMYCIN  AMR:KANAMYCIN   AMR:SPECTINOMYCIN       AMR:STREPTOMYCIN        AMR:TOBRAMYCIN AMR:BETA-LACTAM  AMR:CARBAPENEM  AMR:CEPHALOSPORIN       AMR:ESBL        AMR:INHIBITOR-RESISTANT AMR:COLISTIN    AMR:FOSFOMYCIN  AMR:LINCOSAMIDE AMR:MACROLIDE   AMR:PHENICOL    AMR:CHLORAMPHENICOL     AMR:FLORFENICOL AMR:KIRROMYCIN  AMR:PULVOMYCIN  AMR:QUINOLONE   AMR:RIFAMYCIN   AMR:STREPTOTHRICIN      AMR:SULFONAMIDE AMR:TETRACYCLINE        AMR:TIGECYCLINE AMR:TRIMETHOPRIM        AMR:BLEOMYCIN   STRESS:COPPER   STRESS:MERCURY  STRESS:NICKEL   STRESS:SILVER   STRESS:TELLURIUM        STRESS:ARSENIC  STRESS:FLUORIDE STRESS:QUATERNARY_AMMONIUM      VIRULENCE:clb   VIRULENCE:iro   VIRULENCE:iuc   VIRULENCE:rmp   VIRULENCE:ybt   Others  REPLICON:INC_TYPE       REPLICON:MOB_TYPE       REPLICON:MPF_TYPE       ANNOTATION      CONTIGS
-CP015990:ALL    Klebsiella_pneumoniae   10.10.10.10.ND.ND.ND.ND.ND      KLE_DA0156AA_AS -       -       aac(3)-IId,aac(6')-Ib-cr5,aadA16        aac(6')-Ib-cr5  -       aac(3)-IId      -       aac(6')-Ib-cr5  -       aadA16  aac(6')-Ib-cr5  blaKPC-2,blaOXA-1,blaSHV-28    blaKPC-2 blaOXA-1        -       -       -       -       -       mph(A)  catB3   catB3   -       -       -       aac(6')-Ib-cr5,qnrA3    arr-3,rpoB_V146F        -       sul1    -       -       dfrA27  -       silA,silR       MerP_Gneg,merA,merD,merE,merR_Ps,merR_Ps(*Premature),merT       -       silA,silR       -       arsB_pKW301     -       qacEdelta1      -       -       -       -       fyuA_26,irp1_275,irp2_30,ybtA_73,ybtE_58,ybtP_75,ybtQ_88,ybtS_115,ybtT_26,ybtU_129,ybtX_73      acrF,emrD,kdeA(AMR:EFFLUX)      IncR    -       MPF_T  --
-CP015990:P1     -       -       CP059309.1      PT_361,PC_361   84.9    aac(6')-Ib-cr5,aadA16   aac(6')-Ib-cr5  -       -       -       aac(6')-Ib-cr5  -       aadA16  aac(6')-Ib-cr5  blaKPC-2,blaOXA-1       blaKPC-2        blaOXA-1        -       -       -       -      -mph(A)  catB3   catB3   -       -       -       aac(6')-Ib-cr5,qnrA3    arr-3   -       sul1    -       -       dfrA27  -       -       MerP_Gneg,merA,merD,merE,merR_Ps,merR_Ps(*Premature),merT       -       -       -       -       -       qacEdelta1      -       -      --       -       -       IncR    -       -       Klebsiella_pneumoniae_strain_Kp46596_plasmid_pKp46596-3,_complete_sequence      CP015991.1
-CP015990:Others -       -       -       -       -       aac(3)-IId      -       -       aac(3)-IId      -       -       -       -       -       blaKPC-2,blaSHV-28      blaKPC-2        -       -       -       -       -       -       mph(A)  -       -       -       -      --       rpoB_V146F      -       -       -       -       -       -       silA,silR       -       -       silA,silR       -       arsB_pKW301     -       -       -       -       -       -       fyuA_26,irp1_275,irp2_30,ybtA_73,ybtE_58,ybtP_75,ybtQ_88,ybtS_115,ybtT_26,ybtU_129,ybtX_73      acrF,emrD,kdeA(AMR:EFFLUX)      -       -       MPF_T   -       -
+INPUT   REPLICON        SPECIES HC1360.500.200.100.50.20.10.5.2 REFERENCE       PLASTYPE        COVERAGE        AMR:AMINOGLYCOSIDE      AMR:BETA-LACTAM AMR:CARBAPENEM  AMR:ESBL        AMR:INHIBITOR-RESISTANT AMR:COLISTIN    AMR:FOSFOMYCIN  AMR:MACROLIDE   AMR:PHENICOL    AMR:QUINOLONE   AMR:RIFAMYCIN   AMR:GLYCOPEPTIDES       AMR:SULFONAMIDE AMR:TETRACYCLINE        AMR:TIGECYCLINE AMR:TRIMETHOPRIM        AMR:BLA_INTRINSIC       STRESS:COPPER   STRESS:MERCURY  STRESS:NICKEL   STRESS:SILVER  STRESS:TELLURIUM STRESS:ARSENIC  STRESS:FLUORIDE STRESS:QUATERNARY_AMMONIUM      VIRULENCE:clb   VIRULENCE:iro   VIRULENCE:iuc   VIRULENCE:rmp   VIRULENCE:ybt   Others  REPLICON:INC_TYPE       REPLICON:MOB_TYPE       REPLICON:MPF_TYPE       ANNOTATION      CONTIGS
+examples/CP015990.fna   ALL     Klebsiella_pneumoniae   10.10.10.10.ND.ND.ND.ND.ND      KLE_DA0156AA_AS -       -       aac(3)-IId^,aac(6')-Ib-cr.v2^,aadA16*   OXA-1   KPC-2   -       -       -       -       mphA    catB3.v2        GyrA-83F,GyrA-87A,ParC-80I,qnrA3^       arr-3   -       sul1    -       -       dfrA27  SHV-28^ -       merA,merE,merR_Ps,merT  -       -       -       -       -       qacEdelta1      -       -       -       -       fyuA_26,irp1_275,irp2_30,ybtA_78,ybtE_58,ybtP_75,ybtQ_88,ybtS_115,ybtT_26,ybtU_129,ybtX_73      -       IncR    -       MPF_T   -       -
+examples/CP015990.fna   P1      -       -       CP059309.1      PT_361,PC_361   84.9    aac(6')-Ib-cr.v2^,aadA16*       OXA-1   KPC-2   -       -       -       -       mphA    catB3.v2        qnrA3^  arr-3   -       sul1    -       -       dfrA27 --       merA,merE,merR_Ps,merT  -       -       -       -       -       qacEdelta1      -       -       -       -       -       -       IncR    -       -       Klebsiella_pneumoniae_strain_Kp46596_plasmid_pKp46596-3,_complete_sequence      CP015991.1
+examples/CP015990.fna   Others  -       -       -       -       -       aac(3)-IId^     -       KPC-2   -       -       -       -       mphA    -       GyrA-83F,GyrA-87A,ParC-80I      -       -       -       -       -       -       SHV-28^ -      --       -       -       -       -       -       -       -       -       -       fyuA_26,irp1_275,irp2_30,ybtA_78,ybtE_58,ybtP_75,ybtQ_88,ybtS_115,ybtT_26,ybtU_129,ybtX_73      -       -       -       MPF_T   -       -
 ~~~~~~~~~~~~~
+
+The columns are:
+* **INPUT**: Filename of the input. Used to recognize query assemblies. 
+* **REPLICON**: Type of the replicon. It can be:
+~~~~~~~~~~~~~
+  ALL: A summary of the query.
+  P<n>: One plasmid per row. Will not be reported with '-p'. 
+  Others: Summary of the AMR/VF genes that are not in plasmids (likely carried by the chromosome). Will not be reported with '-p'. 
+~~~~~~~~~~~~~
+  
+* **SPECIES**: Species designation of the query, inferred based on its cgMLST profile. Will not be reported with '-g'. 
+* **HC1360.500.200.100.50.20.10.5.2**: HierCC cluster designation of the query based on the cgMLST profile. HC1360 approximately equals to clonal complex (CC) in MLST. Lower HC levels were used for sub-population clusterings. Numbers after HC indicate the criteria of the single-linkage clustering. Will not be reported with '-g'. 
+* **REFERENCE**: Accession of the reference for predicted plasmid. Will not be reported with '-p'. 
+* **PLASTYPE**: PT (plasmid type) and PC (plasmid cluster) of the predicted plasmid. Will not be reported with '-p'. 
+* **COVERAGE**: Coverage of the plasmid to the reference. Will not be reported with '-p'. 
+* **AMR:AMINOGLYCOSIDE**: Predicted genes/mutations encoding resistance to AMINOGLYCOSIDE. 
+* **AMR:BETA-LACTAM**: Predicted genes/mutations encoding resistance to BETA-LACTAM. 
+* **AMR:CARBAPENEM**: Predicted genes/mutations encoding resistance to CARBAPENEM. 
+* **AMR:ESBL**: Predicted genes/mutations encoding Extended-spectrum beta-lactamases (ESBLs). 
+* **AMR:INHIBITOR-RESISTANT**: Predicted genes/mutations encoding resistance to Beta-Lactamase inhibitors. 
+* **AMR:COLISTIN**: Predicted genes/mutations encoding resistance to COLISTIN. 
+* **AMR:FOSFOMYCIN**: Predicted genes/mutations encoding resistance to FOSFOMYCIN. 
+* **AMR:MACROLIDE**: Predicted genes/mutations encoding resistance to MACROLIDE. 
+* **AMR:PHENICOL**: Predicted genes/mutations encoding resistance to PHENICOL. 
+* **AMR:QUINOLONE**: Predicted genes/mutations encoding resistance to QUINOLONE. 
+* **AMR:RIFAMYCIN**: Predicted genes/mutations encoding resistance to RIFAMYCIN. 
+* **AMR:GLYCOPEPTIDES**: Predicted genes/mutations encoding resistance to GLYCOPEPTIDES. 
+* **AMR:SULFONAMIDE**: Predicted genes/mutations encoding resistance to SULFONAMIDE. 
+* **AMR:TETRACYCLINE**: Predicted genes/mutations encoding resistance to TETRACYCLINE. 
+* **AMR:TIGECYCLINE**: Predicted genes/mutations encoding resistance to TIGECYCLINE. 
+* **AMR:TRIMETHOPRIM**: Predicted genes/mutations encoding resistance to TRIMETHOPRIM. 
+* **AMR:BLA_INTRINSIC**: Predicted intrinsic beta-lactamase in Klebsiella. 
+* **STRESS:COPPER**: Predicted genes encoding resistance to COPPER. 
+* **STRESS:MERCURY**: Predicted genes encoding resistance to MERCURY. 
+* **STRESS:NICKEL**: Predicted genes encoding resistance to NICKEL. 
+* **STRESS:SILVER**: Predicted genes encoding resistance to SILVER. 
+* **STRESS:TELLURIUM**: Predicted genes encoding resistance to TELLURIUM. 
+* **STRESS:ARSENIC**: Predicted genes encoding resistance to ARSENIC. 
+* **STRESS:FLUORIDE**: Predicted genes encoding resistance to FLUORIDE. 
+* **STRESS:QUATERNARY_AMMONIUM**: Predicted genes encoding resistance to QUATERNARY_AMMONIUM. 
+* **VIRULENCE:clb**: colibactin (clb)
+* **VIRULENCE:iro**: salmochelin (iro)
+* **VIRULENCE:iuc**: aerobactin (iuc)
+* **VIRULENCE:rmp**: hypermucoidy (rmpA, rmpA2)
+* **VIRULENCE:ybt**: yersiniabactin (ybt)
+* **Others**: Other resistances. 
+* **REPLICON:INC_TYPE**: INC type of the plasmid. 
+* **REPLICON:MOB_TYPE**: MOB type of the plasmid. 
+* **REPLICON:MPF_TYPE**: MPF type of the plasmid. 
+* **ANNOTATION**: Annotations of the predicted plasmids. 
+* **CONTIGS**: Contigs associated with the predicted plasmids. 
 
 
 # Citation and Reproduction Instructions
