@@ -197,6 +197,59 @@ The columns are:
 * **CONTIGS**: Contigs associated with the predicted plasmids. 
 
 
+| Column      | Explanation |
+| ----------- | ----------- |
+| **INPUT**   | Filename of the input. Used to recognize query assemblies |
+| **REPLICON** | Type of the replicon. It can be: 
+~~~~~~~~~~~~~
+  ALL: A summary of the query.
+  P<n>: One plasmid per row. Will not be reported with '-p'. 
+  Others: Summary of the AMR/VF genes that are not in plasmids (likely carried by the chromosome). Will not be reported with '-p'. 
+~~~~~~~~~~~~~
+|
+| **SPECIES** | Species designation of the query, inferred based on its cgMLST profile. Will not be reported with '-g'. |
+| **HC1360.500.200.100.50.20.10.5.2** | HierCC cluster designation of the query based on the cgMLST profile. HC1360 approximately equals to clonal complex (CC) in MLST. Lower HC levels were used for sub-population clusterings. Numbers after HC indicate the criteria of the single-linkage clustering. Will not be reported with '-g'. |
+| **REFERENCE** | Accession of the reference for predicted plasmid. Will not be reported with '-p'. |
+| **PLASTYPE** | PT (plasmid type) and PC (plasmid cluster) of the predicted plasmid. Will not be reported with '-p'. |
+| **COVERAGE** | Coverage of the plasmid to the reference. Will not be reported with '-p'. |
+| **AMR:AMINOGLYCOSIDE** | Predicted genes/mutations encoding resistance to AMINOGLYCOSIDE. |
+| **AMR:BETA-LACTAM** | Predicted genes/mutations encoding resistance to BETA-LACTAM. |
+| **AMR:CARBAPENEM** | Predicted genes/mutations encoding resistance to CARBAPENEM. |
+| **AMR:ESBL** | Predicted genes/mutations encoding Extended-spectrum beta-lactamases (ESBLs). |
+| **AMR:INHIBITOR-RESISTANT** | Predicted genes/mutations encoding resistance to Beta-Lactamase inhibitors. |
+| **AMR:COLISTIN** | Predicted genes/mutations encoding resistance to COLISTIN. |
+| **AMR:FOSFOMYCIN** | Predicted genes/mutations encoding resistance to FOSFOMYCIN. |
+| **AMR:MACROLIDE** | Predicted genes/mutations encoding resistance to MACROLIDE. |
+| **AMR:PHENICOL** | Predicted genes/mutations encoding resistance to PHENICOL. |
+| **AMR:QUINOLONE** | Predicted genes/mutations encoding resistance to QUINOLONE. |
+| **AMR:RIFAMYCIN** | Predicted genes/mutations encoding resistance to RIFAMYCIN. |
+| **AMR:GLYCOPEPTIDES** | Predicted genes/mutations encoding resistance to GLYCOPEPTIDES. |
+| **AMR:SULFONAMIDE** | Predicted genes/mutations encoding resistance to SULFONAMIDE. |
+| **AMR:TETRACYCLINE** | Predicted genes/mutations encoding resistance to TETRACYCLINE. |
+| **AMR:TIGECYCLINE** | Predicted genes/mutations encoding resistance to TIGECYCLINE. |
+| **AMR:TRIMETHOPRIM** | Predicted genes/mutations encoding resistance to TRIMETHOPRIM. |
+| **AMR:BLA_INTRINSIC** | Predicted intrinsic beta-lactamase in Klebsiella. |
+| **STRESS:COPPER** | Predicted genes encoding resistance to COPPER. |
+| **STRESS:MERCURY** | Predicted genes encoding resistance to MERCURY. |
+| **STRESS:NICKEL** | Predicted genes encoding resistance to NICKEL. |
+| **STRESS:SILVER** | Predicted genes encoding resistance to SILVER. |
+| **STRESS:TELLURIUM** | Predicted genes encoding resistance to TELLURIUM. |
+| **STRESS:ARSENIC** | Predicted genes encoding resistance to ARSENIC. |
+| **STRESS:FLUORIDE** | Predicted genes encoding resistance to FLUORIDE. |
+| **STRESS:QUATERNARY_AMMONIUM** | Predicted genes encoding resistance to QUATERNARY_AMMONIUM. |
+| **VIRULENCE:clb** | colibactin (clb) |
+| **VIRULENCE:iro** | salmochelin (iro) |
+| **VIRULENCE:iuc** | aerobactin (iuc) |
+| **VIRULENCE:rmp** | hypermucoidy (rmpA, rmpA2) |
+| **VIRULENCE:ybt** | yersiniabactin (ybt) |
+| **Others** | Other resistances |
+| **REPLICON:INC_TYPE** | INC type of the plasmid. |
+| **REPLICON:MOB_TYPE** | MOB type of the plasmid. |
+| **REPLICON:MPF_TYPE** | MPF type of the plasmid. |
+| **ANNOTATION** | Annotations of the predicted plasmids. |
+| **CONTIGS** | Contigs associated with the predicted plasmids. |
+
+
 # Citation and Reproduction Instructions
 
 ### Reproduction Instructions
