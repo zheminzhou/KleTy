@@ -7,8 +7,7 @@ logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S
 dirname = os.path.dirname(os.path.abspath(__file__))
 
 exe = dict(makeblastdb=shutil.which('makeblastdb'), 
-           blastn=shutil.which('blastn'), 
-           diamond=shutil.which('diamond'))
+           blastn=shutil.which('blastn'))
 
 
 db_folder = os.path.join(dirname, 'db')
@@ -84,8 +83,8 @@ def check_executables() :
   noFound = []
   if not os.path.isfile(exe['blastn']) :
     noFound.append('blastn')
-  if not os.path.isfile(exe['diamond']) :
-    noFound.append('diamond')
+  # if not os.path.isfile(exe['diamond']) :
+  #   noFound.append('diamond')
   if noFound :
     logging.error('{0} is not found.'.format(' and '.format(noFound)))
     sys.exit(-1)

@@ -14,7 +14,7 @@ except :
 
 makeblastdb = exe['makeblastdb']
 blastn = exe['blastn']
-diamond = exe['diamond']
+# diamond = exe['diamond']
 
 
 
