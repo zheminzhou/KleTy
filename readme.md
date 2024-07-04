@@ -1,6 +1,11 @@
 
 # KleTy (Klebsiella typer for the core genome and plasmids)
-Typing engine for core genome and plasmids in Klebsiella
+KleTy is a tool to type Klebsiella genome assemblies for: 
+* core genome MLST (cgMLST) for detailed genotyping of the core genome
+* Hierarchical clusters (HierCC) that represents natural population
+* Plasmid prediction and classification (PC)
+* hypervirulence associated loci
+* antimicrobial resistance determinants
 
 
 # INSTALLATION:
@@ -21,16 +26,15 @@ All libraries can be installed using pip:
 ~~~~~~~~~~
 pip install click numba numpy pandas biopython pyarrow fastparquet
 ~~~~~~~~~~
-KleTy also calls two 3rd party programs:
+KleTy also calls NCBI-BLAST+:
 
 ~~~~~~~~~~
 ncbi-blast+
-diamond
 ~~~~~~~~~~
 
-Both can be installed via 'apt' in UBUNTU:
+Which can be installed via 'apt' in UBUNTU:
 ~~~~~~~~~~
-sudo apt install -y ncbi-blast+ diamond
+sudo apt install -y ncbi-blast+
 ~~~~~~~~~~
 
 The whole environment can also be installed in conda:
@@ -40,21 +44,14 @@ The whole environment can also be installed in conda:
 conda create --name dty python==3.11
 conda activate dty
 conda install -c conda-forge biopython numba numpy pandas click pyarrow fastparquet
-conda install -c bio-conda blast diamond
+conda install -c bio-conda blast
 ~~~~~~~~~~
 
 The installation process normally finishes in <10 minutes. 
 
-NOTE: Please make sure that "makeblastdb", "blastn", and "diamond" are all in the PATH environment variable (can be run without pointing to their actual location). 
+NOTE: Please make sure that "makeblastdb" and "blastn" are all in the PATH environment variable (can be run without pointing to their actual location). 
 
-Finally, format the plasmid reference database:
-~~~~~~~~~~~
-$ cd /path/to/KleTy/
-$ cd db
-$ gzip -d plasmids.repr.fas.gz
-$ makeblastdb -in plasmids.repr.fas -dbtype nucl
-~~~~~~~~~~~
-
+When run KleTy for the first time, it will 
 
 
 
