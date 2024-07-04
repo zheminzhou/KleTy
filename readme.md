@@ -147,12 +147,7 @@ examples/CP015990.fna   Others  -       -       -       -       -       aac(3)-I
 
 The columns are:
 * **INPUT**: Filename of the input. Used to recognize query assemblies. 
-* **REPLICON**: Type of the replicon. It can be:
-~~~~~~~~~~~~~
-  ALL: A summary of the query.
-  P<n>: One plasmid per row. Will not be reported with '-p'. 
-  Others: Summary of the AMR/VF genes that are not in plasmids (likely carried by the chromosome). Will not be reported with '-p'. 
-~~~~~~~~~~~~~
+* **REPLICON**: Type of the replicon. It can be: "ALL" - A summary of the query. "P<n>" - One plasmid per row. "Others" - Summary of the AMR/VF genes that are not in plasmids (likely carried by the chromosome). |
   
 * **SPECIES**: Species designation of the query, inferred based on its cgMLST profile. Will not be reported with '-g'. 
 * **HC1360.500.200.100.50.20.10.5.2**: HierCC cluster designation of the query based on the cgMLST profile. HC1360 approximately equals to clonal complex (CC) in MLST. Lower HC levels were used for sub-population clusterings. Numbers after HC indicate the criteria of the single-linkage clustering. Will not be reported with '-g'. 
@@ -200,13 +195,7 @@ The columns are:
 | Column      | Explanation |
 | ----------- | ----------- |
 | **INPUT**   | Filename of the input. Used to recognize query assemblies |
-| **REPLICON** | Type of the replicon. It can be: 
-~~~~~~~~~~~~~
-  ALL: A summary of the query.
-  P<n>: One plasmid per row. Will not be reported with '-p'. 
-  Others: Summary of the AMR/VF genes that are not in plasmids (likely carried by the chromosome). Will not be reported with '-p'. 
-~~~~~~~~~~~~~
-|
+| **REPLICON** | Type of the replicon. It can be: "ALL" - A summary of the query. "P<n>" - One plasmid per row. "Others" - Summary of the AMR/VF genes that are not in plasmids (likely carried by the chromosome). |
 | **SPECIES** | Species designation of the query, inferred based on its cgMLST profile. Will not be reported with '-g'. |
 | **HC1360.500.200.100.50.20.10.5.2** | HierCC cluster designation of the query based on the cgMLST profile. HC1360 approximately equals to clonal complex (CC) in MLST. Lower HC levels were used for sub-population clusterings. Numbers after HC indicate the criteria of the single-linkage clustering. Will not be reported with '-g'. |
 | **REFERENCE** | Accession of the reference for predicted plasmid. Will not be reported with '-p'. |
