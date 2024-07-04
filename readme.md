@@ -193,8 +193,18 @@ The columns are:
 | **ANNOTATION** | Annotations of the predicted plasmids. |
 | **CONTIGS** | Contigs associated with the predicted plasmids. |
 
+### <prefix>.cgMLST.profile.gz contains the MD5 hashed allelic profiles. 
+
+This file can be used as inputs for GrapeTree(https://achtman-lab.github.io/GrapeTree/MSTree_holder.html) when ungzipped. 
+
+
 
 # Citation and Reproduction Instructions
+
+**KleTy: integrated typing scheme for core genome and plasmids reveals repeated emergence of multi-drug resistant epidemic lineages in *Klebsiella* worldwide**
+Heng Li, Xiao Liu, Shengkai Li, Jie Rong, Shichang Xie, Yuan Gao, Ling Zhong, Quangui Jiang, Guilai Jiang, Yi Ren, Wanping Sun, Yuzhi Hong, Zhemin Zhou
+medRxiv 2024.04.16.24305880; doi: https://doi.org/10.1101/2024.04.16.24305880
+
 
 ### Reproduction Instructions
 All data required for reproduction of the analysis were distributed in this repository under
