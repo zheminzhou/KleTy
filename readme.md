@@ -116,14 +116,6 @@ Options:
 ~~~~~~~~~~~~~~~~~
 
 ## Parameters:
-* **-q, --query**: Query genome. This can be in Fasta or Fastq format, and can be in plain text or GZIPped.
-* **--ql**: A list of query files. One query genome (file location) per line. KleTy will run these queries one by one and concatenate the outputs together.
-* **-o, --prefix**: Prefix for the outputs. There will be two files <prefix>.KleTy and <prefix>.cgMLST.profile.gz. Will use the prefix of the query file (or the ql file) if not specified. 
-* **-n, --n_proc**: Number of processes to use. Default: 8
-* **-f, --plasmid_fragment**: Flag to predict less reliable plasmid fragments that share <50% (but >=30%) of the reference plasmid.
-* **-m, --skip_gene**: Flag to skip AMR/VF Searching. This step normaly taks ~ 15 seconds.
-* **-g, --skip_cgmlst**: Flag to skip cgMLST calling. This step normaly taks ~ 20 seconds. 
-* **-p, --skip_plasmid**: Flag to skip plasmid prediction. This step normaly taks ~ 30 seconds. 
 
 | Parameter   | Explanation |
 | ----------- | ----------- |
