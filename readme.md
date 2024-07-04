@@ -1,5 +1,6 @@
-
 # KleTy (Klebsiella typer for the core genome and plasmids)
+![KleTy logo](https://github.com/zheminzhou/KleTy/blob/main/logo.png)
+
 KleTy is a tool to type Klebsiella genome assemblies for: 
 * core genome MLST (cgMLST) for detailed genotyping of the core genome
 * Hierarchical clusters (HierCC) that represents natural population
