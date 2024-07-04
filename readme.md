@@ -98,20 +98,29 @@ CP015990.cgMLST.profile.gz
 ## KleTy.py - allelic callings and HierCC clusters & species predictions
 
 ~~~~~~~~~~~~~~
-$ python KleTy.py --help
 Usage: KleTy.py [OPTIONS]
 
 Options:
-  -q, --query TEXT      query genome in fasta or fastq format. May be gzipped.
-  --ql TEXT             a list of query files. One query per line.
-  -o, --prefix TEXT     prefix for output. Only work when there is only one
-                        query. default: query filename
-  -n, --n_proc INTEGER  number of process to use. default: 8
-  -m, --skip_gene       flag to skip AMR/VF searching. default: False
-  -g, --skip_cgmlst     flag to skip cgMLST. default: False
-  -p, --skip_plasmid    flag to skip plasmid typing. default: False
-  --help                Show this message and exit.
+  -q, --query TEXT        query genome in fasta or fastq format. May be
+                          gzipped.
+  --ql TEXT               a list of query files. One query per line.
+  -o, --prefix TEXT       prefix for output. Only work when there is only one
+                          query. default: query filename
+  -n, --n_proc INTEGER    number of process to use. default: 8
+  -f, --plasmid_fragment  flag to predict plasmid fragment sharing < 50% with
+                          the reference
+  -m, --skip_gene         flag to skip AMR/VF searching. default: False
+  -g, --skip_cgmlst       flag to skip cgMLST. default: False
+  -p, --skip_plasmid      flag to skip plasmid typing. default: False
+  --help                  Show this message and exit.
 ~~~~~~~~~~~~~~~~~
+
+## Parameters:
+* ^-q, --query^: Query genome. This can be in Fasta or Fastq format, and can be in plain text or GZIPped.
+* ^--ql^: A list of query files. One query genome (file location) per line. KleTy will run these queries one by one and concatenate the outputs together.
+* ^-o, --prefix^: Prefix for the outputs. There will be two files <prefix>.KleTy and <prefix>.cgMLST.profile.gz
+* 
+
 
 # Outputs:
 ## KleTy generates:
