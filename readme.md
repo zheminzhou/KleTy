@@ -202,14 +202,14 @@ https://github.com/zheminzhou/KleTy/tree/main/db
 
 
 These includes:
-* klebsiella.refsets.fas.gz - reference alleles for all pan genes (for calling new alleles)
-* klebsiella.cgmlst - A list of core genes used in the dcgMLST scheme
-* profile.parq - Allelic profiles of all ~70,000 genomes in parquet format, and can be read using the Pandas library (https://pandas.pydata.org/docs/reference/api/pandas.read_parquet.html). 
+* plasmids.repr.clu.gz - **IMPORTANT**. A mapping table that specifies correlations between plasmids and PT/PCs. 
 * HierCC.tsv.gz - A tab-delimited table consisting of HierCC results for all ~70,000 genomes
+* klebsiella.cgmlst - A list of core genes used in the dcgMLST scheme
+* klebsiella.refsets.fas.gz - reference alleles for all pan genes (for calling new alleles)
 * klebsiella.species - A mapping table that specifies correlations between genomes and Klebsiella species
-* virulence.fasta - reference sequences for hypervirulence genes as used in kleborate
-* AMR* - reference sequences for AMR genes and mutations as used in AMRfinderPlus
-* resfams_db - A mapping file that gives more accurate prediction of ESBLs
-* plasmids/* - Reference sequences for INC and MOB types. 
+* profile.parq - Allelic profiles of all ~70,000 genomes in parquet format, and can be read using the Pandas library (https://pandas.pydata.org/docs/reference/api/pandas.read_parquet.html). 
+* stress_CDS.gz - reference sequences for resistance to metal/biocides
+* traditional_lasmid_type.fas.gz - reference sequences for INC/MOB/MPF types of the plasmids. 
+* kleborate/* - reference sequences from kleborate. 
 
 
