@@ -51,9 +51,17 @@ The installation process normally finishes in <10 minutes.
 
 NOTE: Please make sure that "makeblastdb" and "blastn" are all in the PATH environment variable (can be run without pointing to their actual location). 
 
-When run KleTy for the first time, it will 
+When run for the first time, KleTy will automatically download the reference plasmids from https://zenodo.org/records/12590507/files/plasmids.repr.fas.gz
+This will only run once. But note that the file is fairly large (816 MB), and will take a long time to download. 
 
+Alternatively, for those who have difficulty downloading the file within the pipeline. Please download the file by yourself, and copy it into "db/" under the KleTy folder. Then run
 
+~~~~~~~~~~
+gzip -d plasmids.repr.fas.gz
+makeblastdb -in plasmids.repr.fas -dbtype nucl
+~~~~~~~~~~
+
+to generate the required database. 
 
 
 
@@ -64,19 +72,40 @@ $ cd /path/to/KleTy/
 $ python KleTy.py -q examples/CP015990.fna
 ~~~~~~~~~~~
 
-The whole calculation finishes in <3 minutes with 8 CPU threads. 
+The whole calculation finishes in ~1 minutes with 8 CPU threads (~2.5 minutes with one CPU thread). 
+The screen output will be like:
+
+~~~~~~~~~~~
+07/04/2024 04:44:56 AM Running query: examples/CP015990.fna
+07/04/2024 04:44:56 AM  Searching VF/STRESS genes...
+07/04/2024 04:45:06 AM  Done.
+07/04/2024 04:45:06 AM  Searching AMR genes...
+07/04/2024 04:45:16 AM  Done.
+07/04/2024 04:45:16 AM  Searching plasmids...
+07/04/2024 04:45:51 AM  Done.
+07/04/2024 04:45:51 AM  Running cgMLST...
+07/04/2024 04:46:09 AM  Done.
+~~~~~~~~~~~
+
+And there are two outputs (see below for explanation):
+~~~~~~~~~~~
+CP015990.KleTy
+CP015990.cgMLST.profile.gz
+~~~~~~~~~~~
 
 
 # USAGE:
 ## KleTy.py - allelic callings and HierCC clusters & species predictions
 
 ~~~~~~~~~~~~~~
-$ Usage: KleTy.py [OPTIONS]
+$ python KleTy.py --help
+Usage: KleTy.py [OPTIONS]
 
 Options:
   -q, --query TEXT      query genome in fasta or fastq format. May be gzipped.
-                        [required]
-  -o, --prefix TEXT     prefix for output. default: query filename
+  --ql TEXT             a list of query files. One query per line.
+  -o, --prefix TEXT     prefix for output. Only work when there is only one
+                        query. default: query filename
   -n, --n_proc INTEGER  number of process to use. default: 8
   -m, --skip_gene       flag to skip AMR/VF searching. default: False
   -g, --skip_cgmlst     flag to skip cgMLST. default: False
